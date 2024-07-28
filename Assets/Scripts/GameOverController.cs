@@ -16,7 +16,7 @@ public class GameOverController : MonoBehaviour
         int lastGameClicks = PlayerPrefs.GetInt("LastGameClicks", 0);
         int previousGameClicks = PlayerPrefs.GetInt("PreviousGameClicks", 0);
 
-        gameOverText.text = "GAME OVERr";
+        gameOverText.text = "GAME OVER";
         sessionClicksText.text = playerName + "'s current clicks: " + lastGameClicks;
         totalClicksText.text = playerName + "'s last game clicks: " + previousGameClicks;
 

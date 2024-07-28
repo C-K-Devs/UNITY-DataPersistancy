@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
     public TMP_Text timerText;
     public TMP_Text clickCountText;
 
-    private float timeRemaining = 5f;
+    private float timeRemaining = 60f;
     private int clickCount = 0;
 
     private void Start()
