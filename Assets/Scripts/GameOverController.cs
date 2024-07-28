@@ -1,23 +1,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameOverController : MonoBehaviour
 {
-    
+    public TMP_Text gameOverText;
     public TMP_Text sessionClicksText;
     public TMP_Text totalClicksText;
     public Button backButton;
 
     private void Start()
     {
-        sessionClicksText.text = PlayerPrefs.GetString("PlayerName", "Player") + "'s Total Clicks: " + PlayerPrefs.GetInt("SessionClicks", 0);
-        totalClicksText.text = PlayerPrefs.GetString("PlayerName", "Player") + "'s Last Game Clicks: " + PlayerPrefs.GetInt("TotalClicks", 0);
+        string playerName = PlayerPrefs.GetString("PlayerName", "Player");
+        int lastGameClicks = PlayerPrefs.GetInt("LastGameClicks", 0);
+        int previousGameClicks = PlayerPrefs.GetInt("PreviousGameClicks", 0);
+
+        gameOverText.text = "GAME OVERr";
+        sessionClicksText.text = playerName + "'s current clicks: " + lastGameClicks;
+        totalClicksText.text = playerName + "'s last game clicks: " + previousGameClicks;
+
         backButton.onClick.AddListener(BackToMainMenu);
     }
 
-    public void BackToMainMenu()
+    private void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenuScene");
     }

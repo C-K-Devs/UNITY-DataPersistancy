@@ -7,12 +7,12 @@ public class GameController : MonoBehaviour
     public TMP_Text timerText;
     public TMP_Text clickCountText;
 
-    public float timeRemaining = 60f;
+    private float timeRemaining = 5f;
     private int clickCount = 0;
 
     private void Start()
     {
-        clickCountText.text = "No. of clicks: " + clickCount;
+        clickCountText.text = "Clicks: " + clickCount;
     }
 
     private void Update()
@@ -20,12 +20,12 @@ public class GameController : MonoBehaviour
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
-            timerText.text = "Time Left: " + Mathf.Round(timeRemaining).ToString();
+            timerText.text = "Time: " + Mathf.Round(timeRemaining).ToString();
 
             if (Input.GetMouseButtonDown(0)) // Detects left mouse button click
             {
                 clickCount++;
-                clickCountText.text = "No. of clicks: " + clickCount;
+                clickCountText.text = "Clicks: " + clickCount;
             }
         }
         else
@@ -36,9 +36,9 @@ public class GameController : MonoBehaviour
 
     private void EndGame()
     {
-        int previousClicks = PlayerPrefs.GetInt("TotalClicks", 0);
-        PlayerPrefs.SetInt("SessionClicks", clickCount);
-        PlayerPrefs.SetInt("TotalClicks", previousClicks);
+        int previousGameClicks = PlayerPrefs.GetInt("LastGameClicks", 0);
+        PlayerPrefs.SetInt("PreviousGameClicks", previousGameClicks);
+        PlayerPrefs.SetInt("LastGameClicks", clickCount);
         SceneManager.LoadScene("GameOverScene");
     }
 }
